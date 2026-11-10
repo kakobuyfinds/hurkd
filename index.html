@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="theme-color" content="#171935">
+  <title>WheeBuy spreadsheet | Retrouver une fiche et vérifier les tailles</title>
+  <meta name="description" content="Apprenez à utiliser un WheeBuy spreadsheet pour retrouver une fiche produit, vérifier les tailles et comparer le coût d’un colis. Dix rayons sur CAFANS.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:title" content="WheeBuy spreadsheet | Retrouver une fiche et vérifier les tailles">
+  <meta property="og:description" content="Les bons repères pour retrouver une annonce, lire les photos QC et comparer les frais avant de commander.">
+  <meta property="og:image" content="https://static.nike.com/a/images/t_web_pdp_535_v2/f_auto,u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/b7d9211c-26e7-431a-ac24-b0540fb3c00f/AIR+FORCE+1+%2707.png">
+  <meta property="og:image:alt" content="Basket basse Nike Air Force 1 ’07 blanche">
+  <link rel="icon" href="https://www.cafans.com/favicon.ico">
+  <link rel="preconnect" href="https://static.nike.com">
+  <!-- Recherche éditoriale sur la requête « WheeBuy spreadsheet ».
+       Google a renvoyé une page de vérification. Les dix résultats ci-dessous proviennent
+       d’une recherche web complémentaire. Leur ordre sur Google n’a pas pu être vérifié.
+       sopel.fit : navigation par catégories et liens produits.
+       chinagrails.com : Weidian, Taobao, 1688 et photos QC.
+       whee-buy.net : différence entre tableur et fiche en cours.
+       qcradar.com : photos QC, conversion et frais.
+       usfansyupoo.com : vérification de l’identifiant et de la variante.
+       grails.fit : recherche par marque et fiches avec photos.
+       wheespreadsheet.com : distinction entre domaines aux noms proches.
+       mixfittio.com : recherche par référence de l’article.
+       one-to-oneyupoo.com : répertoire indépendant et catégories.
+       wheebuyspreadsheet.com : questions d’achat, tailles et expédition. -->
+  <style>
+    :root{color-scheme:light;--navy:#171935;--ink:#252743;--soft:#4c4e68;--paper:#f6f7fb;--white:#fff;--line:#d9dce9;--lime:#e0fa76;--violet:#4e3cad}
+    *,*::before,*::after{box-sizing:border-box}
+    body{margin:0;background:var(--paper);color:var(--ink);font:1rem/1.6 system-ui,sans-serif}
+    h1,h2,h3,p,figure{margin:0}
+    h1,h2,h3{line-height:1.12}
+    h1{font-size:clamp(2.4rem,6.1vw,5.5rem);letter-spacing:-.065em;overflow-wrap:anywhere}
+    h2{font-size:clamp(1.6rem,3.4vw,2.6rem);letter-spacing:-.045em}
+    h3{font-size:1.15rem;letter-spacing:-.018em}
+    a{color:var(--violet);text-underline-offset:.2em}
+    :focus-visible{outline:3px solid currentColor;outline-offset:4px}
+    img{display:block;max-width:100%}
+    .wrap{width:min(71rem,calc(100% - 2rem));margin-inline:auto}
+    .mast,.end{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.4rem 1rem;padding-block:.85rem}
+    .mast a,.end a{font-weight:800}
+    .mast span,.end p{color:var(--soft);font-size:.88rem}
+    .categories{border-block:1px solid var(--line);background:var(--white);padding-block:.85rem}
+    .categories h2{font-size:.91rem;letter-spacing:0;margin-bottom:.55rem}
+    .categories ul{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:.35rem;margin:0;padding:0;list-style:none}
+    .categories a{display:flex;align-items:center;min-height:2.55rem;padding:.3rem .55rem;border-radius:.35rem;background:var(--paper);font-size:.9rem;font-weight:650;text-decoration:none}
+    .categories a:hover{background:#e9e5ff;text-decoration:underline}
+    .hero{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);align-items:center;gap:clamp(1rem,4vw,4rem);padding:clamp(1.2rem,4vw,3rem);margin-block:1.1rem 2.4rem;border-radius:1rem;background:var(--navy);color:var(--white)}
+    .hero .eyebrow{margin-bottom:.6rem;color:var(--lime)}
+    .eyebrow,.index{font-size:.78rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+    .hero .intro{max-width:55ch;margin-top:.85rem;color:#ebecfa}
+    .cta{display:inline-block;margin-top:1rem;padding:.6rem .95rem;border-radius:.35rem;background:var(--lime);color:var(--navy);font-weight:800}
+    .hero figure{overflow:hidden;border-radius:.6rem;background:#f5f5f5}
+    .hero img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;object-position:center}
+    figcaption{padding:.55rem .75rem;font-size:.84rem;color:var(--soft)}
+    .section{margin-block:2.4rem}
+    .section>p{max-width:70ch;margin-top:.55rem;color:var(--soft)}
+    .ledger{margin-top:1rem;border-top:1px solid var(--line)}
+    .ledger article{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:.5rem 1.65rem;padding:1rem 0;border-bottom:1px solid var(--line)}
+    .index{display:block;margin-bottom:.35rem;color:var(--violet)}
+    .ledger article p{color:var(--soft)}
+    .ledger article p+p{margin-top:.55rem}
+    .gallery{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.65rem;margin-top:1rem}
+    .gallery figure{overflow:hidden;border:1px solid var(--line);border-radius:.55rem;background:var(--white)}
+    .gallery img{width:100%;height:auto;aspect-ratio:1;object-fit:contain;background:#f6f6f6}
+    .faq{padding:clamp(1rem,3vw,2rem);border:1px solid var(--line);border-radius:.8rem;background:var(--white)}
+    .faq h2{margin-bottom:.8rem}
+    details{border-top:1px solid var(--line)}
+    summary{padding:.65rem 0;cursor:pointer;font-weight:750}
+    details p{max-width:74ch;padding:0 0 .75rem;color:var(--soft)}
+    .end{border-top:1px solid var(--line)}
+    @media(max-width:48rem){.categories ul{grid-template-columns:repeat(3,minmax(0,1fr))}.hero{grid-template-columns:minmax(0,1fr)}.hero figure{width:min(100%,28rem)}.ledger article{grid-template-columns:minmax(0,1fr)}}
+    @media(max-width:31rem){.categories ul,.gallery{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "inLanguage": "fr",
+    "name": "WheeBuy spreadsheet | Retrouver une fiche et vérifier les tailles",
+    "description": "Apprenez à utiliser un WheeBuy spreadsheet pour retrouver une fiche produit, vérifier les tailles et comparer le coût d’un colis. Dix rayons sur CAFANS.",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Qu’est-ce qu’un WheeBuy spreadsheet ?",
+        "acceptedAnswer": {"@type": "Answer", "text": "C’est un tableau de repérage qui regroupe des références de produits par catégorie. Selon le tableau, une ligne peut inclure un lien vendeur, une référence, une variante ou des photos de contrôle qualité."}
+      },
+      {
+        "@type": "Question",
+        "name": "Comment retrouver une fiche si le lien est expiré ?",
+        "acceptedAnswer": {"@type": "Answer", "text": "Recherchez l’identifiant du produit avec le nom de la plateforme d’origine. Sur la nouvelle fiche, vérifiez aussi le vendeur, le coloris et la référence avant de reprendre les mesures ou les photos du tableau."}
+      },
+      {
+        "@type": "Question",
+        "name": "Une photo QC suffit-elle pour authentifier un article ?",
+        "acceptedAnswer": {"@type": "Answer", "text": "Non. Une photo QC permet d’examiner des détails visibles comme les coutures ou le marquage. Pour vérifier l’authenticité, recherchez un justificatif de provenance ou demandez un avis spécialisé."}
+      },
+      {
+        "@type": "Question",
+        "name": "Quel poids faut-il comparer pour l’expédition ?",
+        "acceptedAnswer": {"@type": "Answer", "text": "Vérifiez si le transporteur facture au poids réel ou au poids volumétrique. Demandez les dimensions du colis emballé et appliquez la règle de la ligne d’expédition choisie."}
+      },
+      {
+        "@type": "Question",
+        "name": "Où mènent les liens des catégories ?",
+        "acceptedAnswer": {"@type": "Answer", "text": "Chaque lien de catégorie mène au rayon correspondant sur CAFANS. Les autres liens de navigation ouvrent l’accueil de CAFANS."}
+      }
+    ]
+  }
+  </script>
+<link rel="canonical" href="https://kakobuyfinds.github.io/hurkd/">
+</head>
+<body>
+  <header class="mast wrap">
+    <a href="https://www.cafans.com">www.cafans.com</a>
+    <span>Guide d’achat en français</span>
+  </header>
+  <main>
+    <nav class="categories" aria-labelledby="rayons">
+      <div class="wrap">
+        <h2 id="rayons">Parcourir les rayons CAFANS</h2>
+        <ul>
+          <li><a href="https://cafans.com/category-911-Shoes.html">Chaussures</a></li>
+          <li><a href="https://cafans.com/category-912-Hoodies%2FSweaters.html">Sweats et pulls</a></li>
+          <li><a href="https://cafans.com/category-913-T-Shirts.html">T-shirts</a></li>
+          <li><a href="https://cafans.com/category-914-Jackets.html">Vestes</a></li>
+          <li><a href="https://cafans.com/category-915-Pants%2FShorts.html">Pantalons et shorts</a></li>
+          <li><a href="https://cafans.com/category-916-Headwear.html">Casquettes et chapeaux</a></li>
+          <li><a href="https://cafans.com/category-917-Sets.html">Ensembles</a></li>
+          <li><a href="https://cafans.com/category-918-underwear%2Funderpants.html">Sous-vêtements</a></li>
+          <li><a href="https://cafans.com/category-919-Jersey.html">Maillots</a></li>
+          <li><a href="https://cafans.com/category-920-Accessories.html">Accessoires</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="wrap">
+      <section class="hero" aria-labelledby="titre">
+        <div>
+          <p class="eyebrow">De la référence au colis</p>
+          <h1 id="titre">WheeBuy spreadsheet</h1>
+          <p class="intro">Un WheeBuy spreadsheet est un tableau de repérage qui réunit des liens et des références de produits. Pour comparer deux annonces, partez de l’identifiant de l’article, puis vérifiez le coloris, la taille et les photos de la variante qui vous intéresse.</p>
+          <a class="cta" href="https://www.cafans.com">Explorer le catalogue CAFANS</a>
+        </div>
+        <figure>
+          <img src="https://static.nike.com/a/images/t_web_pdp_535_v2/f_auto,u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/b7d9211c-26e7-431a-ac24-b0540fb3c00f/AIR+FORCE+1+%2707.png" width="1070" height="1338" alt="Basket basse Nike Air Force 1 ’07 blanche" loading="eager" fetchpriority="high" decoding="async">
+          <figcaption>Nike Air Force 1 ’07 · Exemple de visuel de référence</figcaption>
+        </figure>
+      </section>
+
+      <section class="section" aria-labelledby="dossiers">
+        <h2 id="dossiers">Quatre vérifications avant de commander</h2>
+        <p>À mesure que vous comparez les fiches, notez le nom du vendeur, la référence du modèle, la variante exacte et la date de consultation. Ces quatre repères aident à reprendre la recherche si une annonce change.</p>
+        <div class="ledger">
+          <article>
+            <h3><span class="index">01 · La fiche</span>Liens produits WheeBuy</h3>
+            <div>
+              <p>Pour retrouver un article Weidian, Taobao ou 1688, relevez le nom de la plateforme et l’identifiant de la fiche. Deux vendeurs peuvent reprendre la même photo de catalogue. Comparez la référence du modèle, le code couleur et le contenu de la fiche vendeur d’origine.</p>
+              <p>Face à un lien expiré, cherchez l’identifiant avec le nom du vendeur. Si la nouvelle fiche ne propose plus la variante sélectionnée, reprenez la comparaison avec les options réellement affichées.</p>
+            </div>
+          </article>
+          <article>
+            <h3><span class="index">02 · Le choix</span>Guide des tailles WheeBuy</h3>
+            <div>
+              <p>Pour les baskets, mesurez la longueur du pied en centimètres, debout, puis lisez le tableau des pointures du modèle. Si la fiche donne la longueur de la semelle intérieure, distinguez cette mesure de celle du pied. Pour un sweat, comparez la largeur à plat, la longueur du dos et la longueur des manches avec un vêtement qui vous va.</p>
+              <p>Pour un pantalon ou un short, comparez le tour de taille et l’entrejambe. Pour une casquette réglable, notez le tour de tête et la plage de réglage. Pour un ensemble, relevez séparément les mesures du haut et du bas.</p>
+            </div>
+          </article>
+          <article>
+            <h3><span class="index">03 · Les détails</span>Photos QC WheeBuy</h3>
+            <div>
+              <p>Les photos QC montrent les détails visibles de l’article photographié. Pour des chaussures, demandez une vue des deux talons, de la semelle extérieure et de l’étiquette de pointure. Pour un maillot, regardez le flocage de près. Pour un bijou, vérifiez la longueur de la chaîne et demandez un gros plan du fermoir.</p>
+              <p>Quand une couleur compte, comparez les vues prises sous un éclairage similaire. Une photo à côté d’une règle aide à distinguer les dimensions réelles de l’effet de perspective.</p>
+            </div>
+          </article>
+          <article>
+            <h3><span class="index">04 · Le colis</span>Frais de livraison WheeBuy</h3>
+            <div>
+              <p>Estimez le coût total dans une même devise en additionnant le prix de la variante, la livraison locale, les éventuels frais de service et de conversion, puis l’expédition internationale. Pour une livraison en France, en Belgique, en Suisse ou au Canada, vérifiez les options disponibles et les frais éventuels à l’arrivée pour la destination exacte.</p>
+              <p>Comparez les devis à emballage identique. Une boîte à chaussures peut modifier les dimensions du colis et le poids volumétrique. Avant de choisir une ligne d’expédition, regardez également le suivi, la couverture proposée et les conditions de retour.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="images">
+        <h2 id="images">Repères visuels par type de pièce</h2>
+        <p>Ces visuels de marque servent à repérer une silhouette ou un détail. Pour connaître la disponibilité d’un article, consultez sa fiche vendeur.</p>
+        <div class="gallery">
+          <figure>
+            <img src="https://sg.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-monogram-essential-cap--M77589_PM2_Front%20view.png?wid=400&amp;hei=400&amp;fmt=webp" width="400" height="400" alt="Casquette Louis Vuitton Monogram Essential bleue à visière incurvée" loading="lazy" decoding="async">
+            <figcaption>Louis Vuitton · Casquette Monogram Essential</figcaption>
+          </figure>
+          <figure>
+            <img src="https://media.gucci.com/style/HEXFBFBFB_South_0_160_640x640/1793643314/A00H9P_XJIF8_9066_001_100_0000_Light.jpg" width="640" height="640" alt="T-shirt Gucci blanc en jersey avec imprimé" loading="lazy" decoding="async">
+            <figcaption>Gucci · T-shirt en jersey imprimé</figcaption>
+          </figure>
+          <figure>
+            <img src="https://assets.hermes.com/is/image/hermesproduct/700001F%208A_front_wm_101?wid=384&amp;hei=512&amp;fit=fit,1&amp;$product_default_bg$" width="384" height="512" alt="Bracelet Hermès Clic H orange avec fermoir doré en forme de H" loading="lazy" decoding="async">
+            <figcaption>Hermès · Bracelet Clic H</figcaption>
+          </figure>
+          <figure>
+            <img src="https://assets.christiandior.com/is/image/diorprod/N2241WOMCYD03S_SBG_E01-2?$r4x5_raw$&amp;crop=0,0,4000,5000&amp;wid=355&amp;hei=444&amp;scale=0.2219&amp;bfc=on&amp;qlt=80" width="355" height="444" alt="Collier Dior Petit CD à chaîne fine dorée et motif CD serti de cristaux" loading="lazy" decoding="async">
+            <figcaption>Dior · Collier Petit CD</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section faq" aria-labelledby="questions">
+        <h2 id="questions">Questions fréquentes</h2>
+        <details open>
+          <summary>Qu’est-ce qu’un WheeBuy spreadsheet ?</summary>
+          <p>C’est un tableau de repérage qui regroupe des références de produits par catégorie. Selon le tableau, une ligne peut inclure un lien vendeur, une référence, une variante ou des photos de contrôle qualité.</p>
+        </details>
+        <details>
+          <summary>Comment retrouver une fiche si le lien est expiré ?</summary>
+          <p>Recherchez l’identifiant du produit avec le nom de la plateforme d’origine. Sur la nouvelle fiche, vérifiez aussi le vendeur, le coloris et la référence avant de reprendre les mesures ou les photos du tableau.</p>
+        </details>
+        <details>
+          <summary>Une photo QC suffit-elle pour authentifier un article ?</summary>
+          <p>Non. Une photo QC permet d’examiner des détails visibles comme les coutures ou le marquage. Pour vérifier l’authenticité, recherchez un justificatif de provenance ou demandez un avis spécialisé.</p>
+        </details>
+        <details>
+          <summary>Quel poids faut-il comparer pour l’expédition ?</summary>
+          <p>Vérifiez si le transporteur facture au poids réel ou au poids volumétrique. Demandez les dimensions du colis emballé et appliquez la règle de la ligne d’expédition choisie.</p>
+        </details>
+        <details>
+          <summary>Où mènent les liens des catégories ?</summary>
+          <p>Chaque lien de catégorie mène au rayon correspondant sur CAFANS. Les autres liens de navigation ouvrent l’accueil de CAFANS.</p>
+        </details>
+      </section>
+    </div>
+  </main>
+  <footer class="end wrap">
+    <p>Guide éditorial indépendant · Illustrations de référence</p>
+    <a href="https://www.cafans.com">www.cafans.com</a>
+  </footer>
+</body>
+</html>
